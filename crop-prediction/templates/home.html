@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Input Values</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color : #F1F1F1;
+    /*background-image: '';   */
+    background-size: cover;
+    background-position: center;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 500px;
+    padding: 50px;
+    box-sizing: border-box;
+    background-color: rgba(65, 176, 110, 0.8); /* Arkaplan rengi (yeşil) ve opaklık */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    position: relative; /* Pozisyonu belirleme */
+    animation: slideLeftRight 4s infinite alternate; /* Animasyon tanımı */
+  }
+
+  @keyframes slideLeftRight {
+    0% {
+      transform: translateX(0); /* Başlangıç pozisyonu */
+    }
+    70% {
+      transform: translateX(80px); /* Sağa kaydırma */
+    }
+    100% {
+      transform: translateX(-80px); /* Sola kaydırma */
+    }
+  }
+
+  h1 {
+    font-size: 35px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    text-align: left;
+    width: 100%;
+  }
+
+  input {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  button {
+    background-color: #31363F;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: white;
+    color: darkcyan;
+  }
+</style>
+</head>
+
+<div class="container" id="animatedContainer">
+  <h1>For Future</h1>
+  
+  
+  <form action ="{% url 'result' %}">
+    {% csrf_token %}
+
+    
+      <label for="number-input">N (AZOT MİKTARI):</label>
+      <input type="text" id="number-input" name="N" required>
+
+      <label for="password-input">P (FOSFOR MİKTARI):</label>
+      <input type="text" id="number-input" name="P" required>
+
+      <label for="number-input">K (POTASYUM MİKTARI):</label>
+      <input type="number" id="number-input" name="K" required>
+
+      <label for="number-input">SICAKLIK:</label>
+      <input type="number" id="number-input" name="T" required>
+
+      <label for="number-imput">NEM:</label>
+      <input type="number" id="date-input" name="NEM" required>
+
+      <label for="number-input">ph:</label>
+      <input type="number" id="number-input" name="pH" value="#ff0000" required>
+      
+      <label for="number-input">Yağmur(mm):</label>
+      <input type="number" id="number-input" name="mm" value="#ff0000" required>
+    <button type="submit">Gönder</button>
+  </form>
+</div>
+
+
+<script>
+  const animatedContainer = document.getElementById('animatedContainer');
+
+  // Fare imleci container üzerine geldiğinde animasyonu durdur
+  animatedContainer.addEventListener('mouseenter', () => {
+    animatedContainer.style.animationPlayState = 'paused';
+  });
+
+  // Fare imleci container üzerinden ayrıldığında animasyonu devam ettir
+  animatedContainer.addEventListener('mouseleave', () => {
+    animatedContainer.style.animationPlayState = 'running';
+  });
+</script>
+
+</body>
+</html>
